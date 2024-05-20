@@ -4,29 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LogIn</title>
+    <link rel="stylesheet" href="estiloForms.css">
 </head>
 <body>
-    <div>
-        <p>Ingresá a</p>
-        <img src="./assets/logoFullB.svg" alt="power zone">
-        <input type="text" required>
-        <input type="password" name="">
-        <p>¿Olvidaste tu contraseña?</p>
-        <button type="submit">Ingresar</button>
-        <p>¿No tenes cuenta?<br>Registrate como usuario</p>
-    </div>
-    <div>
-        <p>Registrate en</p>
-        <img src="./assets/logoFullB.svg" alt="power zone">
-        <input type="text" required>
-        <input type="text" required>
-        <input type="tel" name="telefono" id="">
-        <input type="text" name="Dirección" id="">
-        <input type="email" name="Mail" id="">
-        <input type="text" name="Usuario" id="">
-        <input type="password" name="Contraseña">
-        <input type="password" name="Contraseña">
-        <button type="submit">Registrarte</button>
-    </div>
+    <Section class="modal logIn_form">
+        <div class="modal_container">
+            <p class="modal_titulo">Ingresá a</p>
+            <img src="./assets/logoFullB.svg" alt="power zone" class="modal_img">
+            <form action="" class="modal_form">
+                <input type="text" placeholder="Usuario" class="modal_inputs">
+                <input type="password" name="" placeholder="Contraseña" class="modal_inputs">
+                <!-- <p class="modal_textoPass">¿Olvidaste tu contraseña?</p> -->
+                <input type="submit" value="Ingresar" class="modal_btn">
+            </form>
+            <p class="modal_texto">¿No tenes cuenta?<br>Registrate como <span style="font-weight: bold;">usuario</span></p>
+        </div>
+    </Section>
+    <section class="modal">
+        <div class="modal_container">
+            <p clas="modal_titulo">Registrate en</p>
+            <img src="./assets/logoFullB.svg" alt="power zone" class="modal_img">
+            <form action="" class="modal_form form_registro">
+                <input type="text" placeholder="Nombre" class="modal_inputs">
+                <input type="text" placeholder="Apellido" class="modal_inputs">
+                <input type="tel" name="telefono" id="" placeholder="Telefono" class="modal_inputs">
+                <input type="text" name="Dirección" id="" placeholder="Dirección" class="modal_inputs">
+                <input type="email" name="Mail" id="" placeholder="Mail" class="modal_inputs">
+                <input type="text" name="Usuario" id="" placeholder="Usuario" class="modal_inputs">
+                <input type="password" name="Contraseña" placeholder="Contraseña" class="modal_inputs">
+                <input type="password" name="Contraseña" placeholder="Repite la contraseña" class="modal_inputs">
+                <input type="submit" value="Registrarme" class="modal_btn">
+            </form>
+        </div>
+    </section>
 </body>
 </html>
