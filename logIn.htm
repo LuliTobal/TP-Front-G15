@@ -7,35 +7,73 @@
     <link rel="stylesheet" href="estiloForms.css">
 </head>
 <body>
-    <Section class="modal logIn_form">
+    <!-- //////////////////////////////////////VENTANA MODAL LOGIN//////////////////////////////////////////////// -->
+    <!-- <Section class="modal logIn_form">
         <div class="modal_container">
             <p class="modal_titulo">Ingresá a</p>
-            <img src="./assets/logoFullB.svg" alt="power zone" class="modal_img">
+            <img src="./assets/logoFullY.svg" alt="power zone" class="modal_img">
             <form action="" class="modal_form">
                 <input type="text" placeholder="Usuario" class="modal_inputs">
-                <input type="password" name="" placeholder="Contraseña" class="modal_inputs">
+                <input type="password" name="" placeholder="Contraseña" class="modal_inputs"> -->
                 <!-- <p class="modal_textoPass">¿Olvidaste tu contraseña?</p> -->
-                <input type="submit" value="Ingresar" class="modal_btn">
+                <!-- <input type="submit" value="Ingresar" class="modal_btn">
             </form>
             <p class="modal_texto">¿No tenes cuenta?<br>Registrate como <span style="font-weight: bold;">usuario</span></p>
         </div>
-    </Section>
-    <section class="modal">
+    </Section> -->
+    <!-- ////////////////////////////////////////////////VENTANA MODAL REGISTRO////////////////////////////////////////// -->
+    <!-- <section class="modal">
         <div class="modal_container">
-            <p clas="modal_titulo">Registrate en</p>
-            <img src="./assets/logoFullB.svg" alt="power zone" class="modal_img">
+            <p class="modal_titulo">Registrate en</p>
+            <img src="./assets/logoFullY.svg" alt="power zone" class="modal_img">
             <form action="" class="modal_form form_registro">
-                <input type="text" placeholder="Nombre" class="modal_inputs">
-                <input type="text" placeholder="Apellido" class="modal_inputs">
-                <input type="tel" name="telefono" id="" placeholder="Telefono" class="modal_inputs">
-                <input type="text" name="Dirección" id="" placeholder="Dirección" class="modal_inputs">
-                <input type="email" name="Mail" id="" placeholder="Mail" class="modal_inputs">
-                <input type="text" name="Usuario" id="" placeholder="Usuario" class="modal_inputs">
-                <input type="password" name="Contraseña" placeholder="Contraseña" class="modal_inputs">
-                <input type="password" name="Contraseña" placeholder="Repite la contraseña" class="modal_inputs">
-                <input type="submit" value="Registrarme" class="modal_btn">
+                <input type="text" placeholder="Nombre" class="registro_inputs nombre">
+                <input type="text" placeholder="Apellido" class="registro_inputs apellido">
+                <input type="tel" name="telefono" id="" placeholder="Telefono" class="registro_inputs tel">
+                <input type="text" name="Dirección" id="" placeholder="Dirección" class="registro_inputs direc">
+                <input type="email" name="Mail" id="" placeholder="Mail" class="registro_inputs mail">
+                <input type="text" name="Usuario" id="" placeholder="Usuario" class="registro_inputs user">
+                <input type="password" name="Contraseña" placeholder="Contraseña" class="registro_inputs pass">
+                <input type="password" name="Contraseña" placeholder="Repite la contraseña" class="registro_inputs repass">
+                <input type="submit" value="Registrarme" class="registro_btn">
             </form>
         </div>
+    </section> -->
+    <!-- //////////////////////////////////////////////FORMULARIO DE CONTACTO//////////////////////////////////////////// -->
+    <section class="contacto">
+        <h1>Contactanos</h1>
+        <form id="contactoForm" enctype="multipart/form-data">
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="contacto_inputs">
+            <div id="errorMessages1" class="error"></div><br>
+            <input type="tel" id="tel" name="tel" placeholder="Tel (ej: 0351 152121212)" class="contacto_inputs">
+            <div id="errorMessages2" class="error"></div><br>
+            <input type="email" id="mail" name="mail" placeholder="Mail" class="contacto_inputs">
+            <div id="errorMessages3" class="error"></div><br>
+            <select id="servicio" name="servicio" class="contacto_inputs">
+                <option value="">Motivo de consulta</option><br>
+                <option value="consulting">Horarios</option><br>
+                <option value="development">Planes</option><br>
+                <option value="design">Servicios</option><br>
+            </select>
+            <div id="errorMessages4" class="error"></div><br>
+            <textarea name="mensaje" id="mensaje" rows="4" placeholder="Ingrese su consulta" class="contacto_textarea"></textarea>
+            <div id="errorMessages5" class="error"></div><br>
+            <label>¿Cómo nos conociste?</label><br>
+            <div><input type="radio" id="internet" name="source" value="internet">
+            <label for="internet">Internet</label></div>
+            <div><input type="radio" id="friend" name="source" value="friend">
+            <label for="friend">Amigo</label></div>
+            <div><input type="radio" id="other" name="source" value="other">
+            <label for="other">Otro</label></div><br>
+            <div id="errorMessages6" class="error"></div><br>
+            <label for="img_subir">Adjunta una imagen:</label>
+            <input type="file" id="img_subir" name="img_subir" accept="image/*" class="contacto_inputs">
+            <div id="errorMessages7" class="error"></div><br>
+            <input type="submit" value="Enviar" class="contacto_enviar">
+        </form>
+        <img src="./assets/vintage-pink-telephone-composition.jpg" alt="" class="img_contacto">
+        <!-- <div id="errorMessages" class="error"></div> -->
     </section>
+<script src="./formsModal.js" ></script>
 </body>
 </html>
