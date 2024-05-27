@@ -9,17 +9,24 @@ document.getElementById('contactoForm').addEventListener('submit', function(even
     var source = document.querySelector('input[name="source"]:checked');
     var attachment = document.getElementById('img_subir').files.length;
     
-    //var errorMessages = '';
-    
     if (nombre === '') {
         document.getElementById('errorMessages1').innerHTML = 'El nombre es obligatorio.';
     }
     if (tel === '') {
         document.getElementById('errorMessages2').innerHTML =  'El teléfono es obligatorio.<br>';
     }else{
-        var patronTel = /^\d{10}$/;
-        }if (!patronTel.test(tel)){
-           document.getElementById('errorMessages2').innerHTML =  'El formato de téfono es incorrecto.<br>';  
+        var patrones = [ //definimos 2 patrones para evaluar el tel ingresado
+            /^\d{2}\s\d{8}$/, // Formato: nn nnnnnnnn
+            /^\d{3}\s\d{7}$/,  // Formato: nnn nnnnnnn
+            /^\d{10}$/ //Formato: nnnnnnnnnn para evitar errores de espacios no puestos
+        ];
+        var esValido = patrones.some(function(patron) { //el metodo some es para evaluar. Utilizamos función cb
+            return patron.test(tel); //compara si alguno de los patrones del array coincide con el telefono
+        }); //si alguno coincide devuelve true, sino false
+
+        if (!esValido) {
+            errorMessages.innerHTML = 'El formato de teléfono es incorrecto.<br>';
+        }
     }
     if (mail === '') {
         document.getElementById('errorMessages3').innerHTML = 'El email es obligatorio.<br>';
