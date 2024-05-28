@@ -195,10 +195,25 @@
 
 /*//////////////////////////////////////////////MEDIAS QUERYSSS////////////////////////////////////////////////////*/
 
-   /* Estilos para pantallas chicas como celulares */
-   @media (max-width: 600px) {
+/* Estilos para pantallas chicas como celulares */
+@media (max-width: 600px) {
 
+    /*//////////////////////////////para el modal registro///////////////////*/
+    .form_registro{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+    }
+    .modal_img{
+        min-width: 200px;
+    }
+    .registro_btn{
+        min-width: 165px;
+    }
 
+    .modal_form{
+        min-width: 200px;
+    }
     /*//////////////////////////////para el contactoooo///////////////////*/
     #contactoForm{
         width: 80%;
@@ -207,8 +222,6 @@
 
 /* Estilos para pantallas medianas como las de tablet */
 @media  (max-width: 768px) {
-
-
     /*/////////////////////////////////////para el contactooo/////////////////////*/
     .contacto{
         display: flex;
@@ -217,11 +230,5 @@
     }
     .img_contacto{
         display: none;
-    }
-    
-}
-
-/* Estilos para pantallas grandes típico monitor de compu */
-@media (min-width: 768px) and (max-width: 1024px) {
-    
+    } 
 }

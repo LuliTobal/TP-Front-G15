@@ -44,10 +44,7 @@ document.getElementById('contactoForm').addEventListener('submit', function(even
         document.getElementById('errorMessages7').innerHTML = 'Debes adjuntar una imagen.<br>';
     }
     
-    // if (errorMessages !== '') {
-    //     document.getElementById('errorMessages').innerHTML = errorMessages;
      else {
-        document.getElementById('errorMessages').innerHTML = '';
         alert('Formulario enviado con éxito!');
         // Aquí podrías enviar el formulario con un método real, como fetch o XMLHttpRequest
         // Por ejemplo:
