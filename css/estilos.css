@@ -1,0 +1,278 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #1B1B1B;
+}
+
+footer {
+    background-color: black;
+    width: 100%;
+    height: 179.43px;
+    top: 2380.09px;
+    gap: 0px;
+    opacity: 0px;
+
+}
+
+#navBar {
+    width: 100%;
+    height: 78.94px;
+
+}
+
+#sentadilla {
+    margin-bottom: 100px;
+    width: 100%;
+    height: 453.32px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+#amarilla {
+
+    position: absolute;
+    width: 528px;
+    height: 128px;
+    top: 305.6px;
+    left: 100px;
+    color: #FAFF00;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 43.57px;
+}
+
+#prueba {
+    width: 372px;
+    height: 48px;
+    top: 670.16px;
+    left: 106.48px;
+    gap: 0px;
+    opacity: 0px;
+    margin-left: 50px;
+
+}
+
+#nos {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 48.41px;
+    text-align: left;
+    color: #FAFF00;
+
+}
+
+#texto1 {
+    width: 645.72px;
+    height: 154px;
+    top: 784.14px;
+    left: 106.48px;
+    gap: 0px;
+    opacity: 0px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.78px;
+    text-align: left;
+    margin-left: 50px;
+    color: #FFFFFF;
+    padding-top: 100px;
+
+}
+
+.content-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 200px;
+    box-sizing: border-box;
+
+}
+
+#correr {
+    width: 454px;
+    height: 325.96px;
+    margin-right: 50px;
+    gap: 0px;
+    opacity: 0px;
+
+}
+
+#divsub {
+    width: 328px;
+    height: 48px;
+    gap: 0px;
+    opacity: 0px;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 48.41px;
+    text-align: left;
+    color: #FAFF00E0;
+    padding-top: 170px;
+    padding-left: 38%;
+    padding-bottom: 70px;
+
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-container>div {
+    width: 328.12px;
+    height: 416.52px;
+    border: 2px solid;
+    border-color: #FAFF00;
+    gap: 0px;
+    border-radius: 4px;
+    margin: 20px;
+    background-color: #090909;
+    box-shadow:
+        0 0 5px #FAFF00,
+        /* Brillo cercano */
+        0 0 10px #FAFF00,
+        /* Brillo intermedio */
+        0 0 15px #FAFF00;
+    /* Brillo lejano */
+
+}
+
+.starter {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 33.89px;
+    text-align: center;
+    color: #F5F5F5;
+    padding-top: 50px;
+    padding-bottom: 30px;
+
+}
+
+.textito {
+
+
+
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24.2px;
+    text-align: center;
+    color: #F5F5F5;
+}
+
+.botoncito {
+
+    height: 60px;
+    gap: 0px;
+    opacity: 0px;
+    text-align: center;
+    color: #FAFF00;
+    font-size: 32px;
+
+}
+
+#doce {
+    padding-top: 50px;
+}
+
+#dieci {
+    padding-top: 71px;
+}
+
+#veinti {
+    padding-top: 18px;
+}
+
+.boton {
+    width: 214.79px;
+    height: 44.25px;
+    top: 1627.25px;
+    left: 955.73px;
+    gap: 0px;
+    border-radius: 4px 0px 0px 0px;
+    border: 1px 0px 0px 0px;
+    opacity: 0px;
+    border: 1px solid #FAFF00;
+    background: #FAFF00E0;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21.78px;
+    text-align: center;
+    margin-left: 57px;
+}
+
+.container {
+    display: flex;
+    padding-top: 100px;
+    margin-left: 100px;
+}
+
+#prote {
+    width: 454px;
+    height: 325.96px;
+    gap: 0px;
+    opacity: 1px;
+    margin-right: 100px;
+
+
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    /* Asegura que el h3 y el p estén en columna */
+}
+
+.text-content h3 {
+    margin: 0;
+    /* Elimina el margen predeterminado */
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 48.41px;
+    text-align: left;
+    color: #FAFF00E0;
+
+
+}
+
+.text-content p {
+    margin-top: 40px;
+    /* Ajusta el espacio entre el h3 y el p */
+    width: 536.07px;
+    height: 88px;
+    top: 1945.35px;
+    left: 653.04px;
+    gap: 0px;
+    opacity: 0px;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.78px;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+#action-button {
+    margin-top: 90px;
+    /* Espacio entre el párrafo y el botón */
+    align-self: flex-end;
+    /* Alinea el botón a la derecha del contenedor de texto */
+    background-color: #1B1B1B;
+    color: #FAFF00;
+    width: 214.79px;
+    height: 44.25px;
+    top: 2126.08px;
+    left: 1012.39px;
+    gap: 0px;
+    border-radius: 4px 0px 0px 0px;
+    opacity: 0px;
+    border: 1px solid #FAFF00;
+    margin-bottom: 100px;
+}
