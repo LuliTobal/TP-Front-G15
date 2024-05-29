@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda</title>
+  <link rel="icon" type="image/svg+xml" href="../img/IconoP-Y_Mesa de trabajo 1.svg">
+  <link rel="stylesheet" href="../css/tienda.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="../css/footer.css">
+</head>
+<body>
+  <div id="app">
+    <header id="header"></header>
+    <div id="tienda">
+      <p id="titulo-tienda">TIENDA</p>
+      <div id="carrito" @click="mostrarCarrito">
+        <svg id="svg-carrito" width="40" height="40" viewBox="-3 3 40 40">
+          <path xmlns="http://www.w3.org/2000/svg" d="M7.74526 34.7144C6.99448 34.7144 6.35176 34.4628 5.81711 33.9595C5.28246 33.4563 5.01514 32.8514 5.01514 32.1447V16.7266C5.01514 16.0199 5.28246 15.415 5.81711 14.9117C6.35176 14.4085 6.99448 14.1569 7.74526 14.1569H10.4754C10.4754 12.3795 11.1409 10.8645 12.4718 9.61175C13.8027 8.35903 15.4124 7.73267 17.3007 7.73267C19.189 7.73267 20.7987 8.35903 22.1296 9.61175C23.4605 10.8645 24.126 12.3795 24.126 14.1569H26.8561C27.6069 14.1569 28.2496 14.4085 28.7843 14.9117C29.3189 15.415 29.5862 16.0199 29.5862 16.7266V32.1447C29.5862 32.8514 29.3189 33.4563 28.7843 33.9595C28.2496 34.4628 27.6069 34.7144 26.8561 34.7144H7.74526ZM7.74526 32.1447H26.8561V16.7266H7.74526V32.1447ZM17.3007 24.4356C19.189 24.4356 20.7987 23.8093 22.1296 22.5565C23.4605 21.3038 24.126 19.7888 24.126 18.0114H21.3959C21.3959 19.0821 20.9977 19.9922 20.2014 20.7417C19.4052 21.4912 18.4382 21.8659 17.3007 21.8659C16.1631 21.8659 15.1962 21.4912 14.3999 20.7417C13.6036 19.9922 13.2055 19.0821 13.2055 18.0114H10.4754C10.4754 19.7888 11.1409 21.3038 12.4718 22.5565C13.8027 23.8093 15.4124 24.4356 17.3007 24.4356ZM13.2055 14.1569H21.3959C21.3959 13.0862 20.9977 12.1761 20.2014 11.4266C19.4052 10.6771 18.4382 10.3024 17.3007 10.3024C16.1631 10.3024 15.1962 10.6771 14.3999 11.4266C13.6036 12.1761 13.2055 13.0862 13.2055 14.1569Z" fill="#FAFF00"/>
+        </svg>
+        <div id="cantidadCarrito">{{ totalCarrito }}</div>
+      </div>
+      <div class="modal" v-if="carritoVisible" :style="{ display: carritoVisible ? 'block' : 'none' }">
+        <div :class="['modal-content', { 'carrito-vacio': carrito.length === 0 }]">
+          <p :class="{ 'productos-carrito-vacio': carrito.length === 0, 'productos-carrito-no-vacio': carrito.length > 0 }">Mi carrito</p>
+          <div class="cerrar-carrito">
+            <button @click="cerrarCarrito()">X</button>
+          </div>
+          <div class="productos-wrapper">
+            <div class="elemento-carrito" v-for="(item, index) in carrito" :key="index">
+              <div class="imagen-carrito">
+                <img :src="item.image" :alt="item.name" />
+              </div>
+              <div class="info-carrito">
+                <div class="grupo1">
+                  <h2>{{ item.name }}</h2>
+                  <button @click="removeFromCart(index)">X</button>
+                </div>
+                <div class="grupo2">
+                  <p id="prec">${{ item.price }}</p>
+                </div>
+                <div class="grupo3">
+                  <button @click="cambiarCantidad(index,'decrementar')">-</button>
+                  <p id="cant">{{ item.cantidad }}</p>
+                  <button @click="cambiarCantidad(index,'incrementar')">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="importe"  v-if="carrito.length > 0">
+            <div class="subtotal">
+              <h2 id="subtotal">Subtotal</h2>
+              <p>${{ subtotal }}</p>
+            </div>
+            <div class="linea-horizontal"></div>
+            <div class="total">
+              <h2 id="total">Total</h2>
+              <p>${{ total }}</p>
+            </div>
+            <div class="div-comprar-vaciar">
+              <button id="btn-vaciar" @click="limpiarCarrito">
+                <svg id="logo-delete" width="27" height="27" viewBox="0 0 60 60">
+                  <path xmlns="http://www.w3.org/2000/svg" d="M 28 7 C 25.243 7 23 9.243 23 12 L 23 15 L 13 15 C 11.896 15 11 15.896 11 17 C 11 18.104 11.896 19 13 19 L 15.109375 19 L 16.792969 49.332031 C 16.970969 52.510031 19.600203 55 22.783203 55 L 41.216797 55 C 44.398797 55 47.029031 52.510031 47.207031 49.332031 L 48.890625 19 L 51 19 C 52.104 19 53 18.104 53 17 C 53 15.896 52.104 15 51 15 L 41 15 L 41 12 C 41 9.243 38.757 7 36 7 L 28 7 z M 28 11 L 36 11 C 36.552 11 37 11.449 37 12 L 37 15 L 27 15 L 27 12 C 27 11.449 27.448 11 28 11 z M 19.113281 19 L 44.886719 19 L 43.212891 49.109375 C 43.153891 50.169375 42.277797 51 41.216797 51 L 22.783203 51 C 21.723203 51 20.846109 50.170328 20.787109 49.111328 L 19.113281 19 z M 32 23.25 C 31.033 23.25 30.25 24.034 30.25 25 L 30.25 45 C 30.25 45.966 31.033 46.75 32 46.75 C 32.967 46.75 33.75 45.966 33.75 45 L 33.75 25 C 33.75 24.034 32.967 23.25 32 23.25 z M 24.642578 23.251953 C 23.677578 23.285953 22.922078 24.094547 22.955078 25.060547 L 23.652344 45.146484 C 23.685344 46.091484 24.462391 46.835938 25.400391 46.835938 C 25.421391 46.835938 25.441891 46.835938 25.462891 46.835938 C 26.427891 46.801938 27.183391 45.991391 27.150391 45.025391 L 26.453125 24.939453 C 26.419125 23.974453 25.606578 23.228953 24.642578 23.251953 z M 39.355469 23.251953 C 38.388469 23.224953 37.580875 23.974453 37.546875 24.939453 L 36.849609 45.025391 C 36.815609 45.991391 37.571109 46.801938 38.537109 46.835938 C 38.558109 46.836938 38.578609 46.835938 38.599609 46.835938 C 39.537609 46.835938 40.314656 46.091484 40.347656 45.146484 L 41.044922 25.060547 C 41.078922 24.094547 40.321469 23.285953 39.355469 23.251953 z"/>
+                </svg>  
+                <span id="texto-delete">Vaciar carrito</span>
+              </button>
+              <button id="btn-comprar" @click="comprar">Comprar</button>
+            </div>
+          </div>
+          <div id="vacio" v-else>
+            <img id="imagen-vacio" src="../img/carrito_vacio.png" alt="carrito vacío">
+            <p>Tu carrito está vacío</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="grilla">
+    <aside>
+      <section>
+        <ul id="filtros">
+          <li :class="{ open: dropdowns.categoria }" id="categoria">
+            <p @click="toggleDropdown('categoria')">Categoría</p>
+            <ul v-if="dropdowns.categoria">
+              <li><a @click="handleFilterClick('categoria', 'Elementos')" href="#">Elementos de entrenamiento</a></li>
+              <li><a @click="handleFilterClick('categoria', 'Suplemento')" href="#">Suplementos</a></li>
+              <li><a @click="handleFilterClick('categoria', 'Merchandising')" href="#">Merchandising</a></li>
+              <li><a @click="handleFilterClick('categoria', 'Indumentaria')" href="#">Indumentaria deportiva</a></li>
+            </ul>
+          </li>
+          <li :class="{ open: dropdowns.genero }" id="genero">
+            <p @click="toggleDropdown('genero')">Género</p>
+            <ul v-if="dropdowns.genero"> 
+              <li><a @click="handleFilterClick('genero', 'Hombre')" href="#">Hombre</a></li>
+              <li><a @click="handleFilterClick('genero', 'Mujer')" href="#">Mujer</a></li>
+              <li><a @click="handleFilterClick('genero', 'Unisex')" href="#">Unisex</a></li>
+            </ul>
+          </li>
+          <li :class="{ open: dropdowns.talle }" id="talle">
+            <p @click="toggleDropdown('talle')">Talle</p>
+            <ul v-if="dropdowns.talle">
+              <li><a @click="handleFilterClick('talle', 'XS')" href="#">XS</a></li>
+              <li><a @click="handleFilterClick('talle', 'S')" href="#">S</a></li>
+              <li><a @click="handleFilterClick('talle', 'M')" href="#">M</a></li>
+              <li><a @click="handleFilterClick('talle', 'L')" href="#">L</a></li>
+              <li><a @click="handleFilterClick('talle', 'XL')" href="#">XL</a></li>
+              <li><a @click="handleFilterClick('talle', '36')" href="#">36</a></li>
+              <li><a @click="handleFilterClick('talle', '37')" href="#">37</a></li>
+              <li><a @click="handleFilterClick('talle', '38')" href="#">38</a></li>
+              <li><a @click="handleFilterClick('talle', '39')" href="#">39</a></li>
+              <li><a @click="handleFilterClick('talle', '40')" href="#">40</a></li>
+              <li><a @click="handleFilterClick('talle', '41')" href="#">41</a></li>
+              <li><a @click="handleFilterClick('talle', '42')" href="#">42</a></li>
+              <li><a @click="handleFilterClick('talle', '43')" href="#">43</a></li>
+            </ul>
+          </li>
+          <li :class="{ open: dropdowns.precio }">
+            <p @click="toggleDropdown('precio')">Precio</p>
+            <ul class="ul-precio" v-if="dropdowns.precio">
+              <li><a @click="handleFilterClick('menor', '50000')" href="#">Hasta $50.000</a></li>
+              <li>Entre
+                <div class="rango-precios">
+                  <input ref="precioMinimoInput" type="number" v-model="precioMinimo" @input="handlePriceChange" placeholder="Mínimo">
+                  <span>-</span>
+                  <input ref="precioMaximoInput" type="number" v-model="precioMaximo" @input="handlePriceChange" placeholder="Máximo">
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </aside>
+    <main>
+      <div v-if="filtros.length > 0">
+        <section id="filtros-aplicados">
+          <p>Filtros</p>
+          <ul>
+            <li v-for="(filtro, index) in filtros" :key="index">
+              {{ filtro.tipo === 'menor' ? 'Precio Máximo: $' : filtro.tipo === 'mayor' ? 'Precio Mínimo: $' : '' }}{{ filtro.valor }}
+              <button @click="removeFilter(index)">x</button>
+            </li>
+          </ul>
+        </section>
+      </div>
+      <div id="lista-productos">
+        <div class="product" v-for="(product, index) in productosPaginados" :key="index">
+          <img :src="product.image" :alt="product.name">
+          <h3>{{ product.name }}</h3>
+          <span @mouseover="mostrarDescripcion(index)" @mouseout="ocultarDescripcion(index)">
+            Ver descripción
+          </span>
+          <div id="precio-carrito">
+            <p id="precio">${{ product.price }}</p>
+            <button @click="addToCart(product)">+</button>
+          </div>
+          <div v-if="mostrarVentana[index]" class="ventana-flotante">
+            <div>{{ product.description }}</div>
+          </div>
+        </div>
+      </div>
+      <div v-if="filtrados.length > 0">
+        <div v-if="totalPaginas > 1" class="paginacion">
+          <button @click="paginaActual > 1 && cambiarPagina(paginaActual - 1)" :disabled="paginaActual === 1">&#x3C;</button>
+          <span v-for="pagina in paginasVisibles" :key="pagina" @click="pagina !== '...' && cambiarPagina(pagina)" :class="['pagina', { active: pagina === paginaActual }]" :disabled="pagina === '...'">
+            {{ pagina }}
+          </span>
+          <button @click="paginaActual < totalPaginas && cambiarPagina(paginaActual + 1)" :disabled="paginaActual === totalPaginas">&#x3E;</button>
+        </div>
+      </div>
+      <p class="referencia-paginas" v-if="filtrados.length > 0">{{ (paginaActual - 1) * productosPorPagina + 1 }} - {{ Math.min(paginaActual * productosPorPagina, filtrados.length) }} de {{ filtrados.length }} productos</p>
+      <p class="referencia-paginas" v-else>No hay productos disponibles</p>
+    </main>
+  </div>
+  <footer id="footer"></footer>
+  </div>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/tienda.js"></script> 
+  <script src="../js/header.js"></script>
+  <script src="../js/footer.js"></script>
+</body>
+</html>

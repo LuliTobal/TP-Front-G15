@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+#footer {
+  background-color: black;
+  color: white;
+  display: flex;
+  height: 180px;
+  justify-content: space-between; 
+  padding: 20px;
+}
+
+.footer-section {
+  width: 30%; 
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.contact-info p {
+  margin: 3px 0; 
+}
+
+.social-media {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.social-media img {
+  height: 30px; 
+  margin-right: 5px;
+  width: 30px;
+}
+
+.rights-info {
+  align-items: end;
+  display: flex;
+  font-size: 12px;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  #footer {
+    align-items: center; 
+    flex-direction: column; 
+    height: auto; 
+  }
+
+  .footer-section {
+    margin-bottom: 20px; 
+    width: 100%; 
+  }
+
+  .contact-info {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    order: 1;
+  }
+
+  .social-media {
+    order: 2;
+  }
+
+  .rights-info {
+    margin: auto;
+    order: 3;
+  }
+}
