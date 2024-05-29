@@ -1,0 +1,121 @@
+* {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none;
+}
+
+body {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+footer {
+  margin-top: 150px;
+}
+
+#header ul > li:nth-child(3) a {
+  color: #FAFF00;
+}
+
+#ejercicios {
+  align-items: center;
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  margin: 20px 0 0 40px;
+}
+
+#titulo-ejercicios {
+  -webkit-text-fill-color: #222222;
+  -webkit-text-stroke-color: #FAFF00;
+  -webkit-text-stroke-width: 0.5px;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 31.47px;
+  padding: 20px;
+}
+
+.video-section {
+  background-color: #1e1e1e;
+  color: #fff;
+  margin: 0 40px 30px 40px;
+  padding: 20px;
+}
+
+.video-section h3 {
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.video-carousel {
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+.video-carousel-inner {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.video-item {
+  background-color: #1e1e1e;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+  min-width: 250px; /* Este es el ancho mínimo */
+  width: auto;
+}
+
+.video-item iframe {
+  border: none;
+  border-radius: 5px;
+  height: 200px;
+  width: 100%;
+}
+
+.video-info {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.carousel-control {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  z-index: 1;
+}
+
+.carousel-control.prev {
+  left: 0;
+}
+
+.carousel-control.next {
+  right: 0;
+}
+
+@media (max-width: 1200px) {
+  .video-item {
+    min-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .video-item {
+    min-width: 350px;
+  }
+}
+
+@media (max-width: 576px) {
+  .video-item {
+    margin-right: 0;
+    min-width: 100%;
+  }
+}
