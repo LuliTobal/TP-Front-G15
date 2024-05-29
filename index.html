@@ -26,38 +26,39 @@
             <p id="nos">SOBRE NOSOTROS</p>
         </div>
         <div class="content-container">
-            <p id="texto1">Bienvenidos a [Nombre del Gimnasio], tu segundo hogar donde la salud y el bienestar son
-                nuestra prioridad. Fundado en [Año de Fundación], nuestro gimnasio ha crecido con la misión de ofrecer
-                un espacio donde todos puedan alcanzar sus metas físicas y mejorar su calidad de vida.
+            <p id="texto1">Bienvenidos a Power Zone, tu segundo hogar donde la salud y el bienestar son
+                nuestra prioridad. Fundado en 2008, nuestro gimnasio ha crecido con la misión de ofrecer
+                un espacio donde todos puedan alcanzar sus metas físicas y mejorar su calidad de vida. <br>
 
-                En [Nombre del Gimnasio], creemos que cada persona es única y, por ello, ofrecemos una amplia variedad
+                En Power Zone, creemos que cada persona es única y, por ello, ofrecemos una amplia variedad
                 de programas y servicios adaptados a todas las edades y niveles de condición física. Desde entrenamiento
                 personalizado y clases grupales, hasta programas de rehabilitación y bienestar, estamos aquí para
                 apoyarte en cada paso de tu viaje hacia una vida más saludable.</p>
             <img src="./imagenes/correr.jpg" alt="gimnasio lleno de maquinas" id="correr">
         </div>
 
-        <div id="divsub">SUSCRIPCIONES </div>
+        <div id="divsub">SUSCRIPCIONES</div>
         <div class="flex-container">
             <div>
                 <h3 class="starter">PLAN <br> STARTER</h3>
                 <h4 class="textito">2 clases semanales <br>
                     Acceso a musculación y entrenamiento funcional</h4>
-                <h3 class="botoncito" id="doce">$12.000</h3><button type="button" class="boton">Comenzar ahora!</button>
+                <h3 class="botoncito" id="doce">$12.000</h3>
+                <button type="button" class="boton">Comenzar ahora!</button>
             </div>
             <div>
                 <H3 class="starter">PLAN <br> 2</H3>
                 <h4 class="textito">3 clases semanales <br>
                     Acceso a todas las clases</h4>
-                <h3 class="botoncito" id="dieci">$16.000</h3><button type="button" class="boton">Comenzar
-                    ahora!</button>
+                <h3 class="botoncito" id="dieci">$16.000</h3>
+                <button type="button" class="boton">Comenzar ahora!</button>
             </div>
             <div>
                 <H3 class="starter">PLAN <br> LIBRE</H3>
                 <h4 class="textito">Pase libre <br>
                     Acceso a todas las clases <br> Acceso a la pileta <br> Plan personalizado</h4>
-                <h3 class="botoncito" id="veinti">$23.000</h3><button type="button" class="boton">Comenzar
-                    ahora!</button>
+                <h3 class="botoncito" id="veinti">$23.000</h3>
+                <button type="button" class="boton">Comenzar ahora!</button>
             </div>
 
         </div>
@@ -69,11 +70,80 @@
                 <button id="action-button">Acceder a la tienda</button>
             </div>
         </div>
-
+        <!-- /////////////////////////////FORMULARIO DE CONTACTO Agregado por Luli/////////////////////////////////////// -->
+        <section class="contacto">
+            <h1 class="tituloSeccion">CONTACTAMOS</h1>
+            <form id="contactoForm" enctype="multipart/form-data">
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="contacto_inputs">
+                <div id="errorMessages1" class="error"></div><br>
+                <input type="tel" id="tel" name="tel" placeholder="Tel (sin 0 ni 15 ej: 351 2121212)" class="contacto_inputs">
+                <div id="errorMessages2" class="error"></div><br>
+                <input type="email" id="mail" name="mail" placeholder="Mail" class="contacto_inputs">
+                <div id="errorMessages3" class="error"></div><br>
+                <select id="servicio" name="servicio" class="contacto_inputs">
+                    <option value="">Motivo de consulta</option><br>
+                    <option value="consulting">Horarios</option><br>
+                    <option value="development">Planes</option><br>
+                    <option value="design">Servicios</option><br>
+                </select>
+                <div id="errorMessages4" class="error"></div><br>
+                <textarea name="mensaje" id="mensaje" rows="4" placeholder="Ingrese su consulta" class="contacto_textarea"></textarea>
+                <div id="errorMessages5" class="error"></div><br>
+                <label>¿Cómo nos conociste?</label><br>
+                <div><input type="radio" id="internet" name="source" value="internet">
+                <label for="internet">Internet</label></div>
+                <div><input type="radio" id="friend" name="source" value="friend">
+                <label for="friend">Amigo</label></div>
+                <div><input type="radio" id="other" name="source" value="other">
+                <label for="other">Otro</label></div><br>
+                <div id="errorMessages6" class="error"></div><br>
+                <label for="img_subir">Adjunta una imagen:</label>
+                <input type="file" id="img_subir" name="img_subir" accept="image/*" class="contacto_inputs">
+                <div id="errorMessages7" class="error"></div><br>
+                <input type="submit" value="Enviar" class="contacto_enviar">
+                <a href="#" class="probanding" style="font-size: 32px; color: aqua;">aca probando el modal</a>
+            </form>
+            <img src="./imagenes/vintage-pink-telephone-composition.jpg" alt="" class="img_contacto">
+        </section>
+        <!-- /////////////////////////////VENTANA MODAL LOGIN Agregado por Luli/////////////////////////////////////// -->
+        <Section class="modal logIn_form ">
+            <div class="modal_container">
+                <p class="modal_titulo">Ingresá a</p>
+                <img src="./assets/logoFullY.svg" alt="power zone" class="modal_img">
+                <form action="" class="modal_form">
+                    <input type="text" placeholder="Usuario" class="modal_inputs">
+                    <input type="password" name="" placeholder="Contraseña" class="modal_inputs">
+                    <!-- <p class="modal_textoPass">¿Olvidaste tu contraseña?</p> -->
+                    <input type="submit" value="Ingresar" class="modal_btn">
+                </form>
+                <p class="modal_texto abrirRegistro">¿No tenes cuenta?<br>Registrate como <span style="font-weight: bold;">usuario</span></p>
+                <a href="#" class="cierreModal">X</a>
+            </div>
+        </Section>
+        <!-- /////////////////////////////VENTANA MODAL REGISTRO Agregado por Luli/////////////////////////////////////// -->
+        <section class="modal registro_form">
+            <div class="modal_container">
+                <p class="modal_titulo">Registrate en</p>
+                <img src="./assets/logoFullY.svg" alt="power zone" class="modal_img">
+                <form action="" class="modal_form form_registro">
+                    <input type="text" placeholder="Nombre" class="registro_inputs nombre">
+                    <input type="text" placeholder="Apellido" class="registro_inputs apellido">
+                    <input type="tel" name="telefono" id="" placeholder="Telefono" class="registro_inputs tel">
+                    <input type="text" name="Dirección" id="" placeholder="Dirección" class="registro_inputs direc">
+                    <input type="email" name="Mail" id="" placeholder="Mail" class="registro_inputs mail">
+                    <input type="text" name="Usuario" id="" placeholder="Usuario" class="registro_inputs user">
+                    <input type="password" name="Contraseña" placeholder="Contraseña" class="registro_inputs pass">
+                    <input type="password" name="Contraseña" placeholder="Repite la contraseña" class="registro_inputs repass">
+                    <input type="submit" value="Registrarme" class="registro_btn">
+                </form>
+                <a href="#" class="cierreModalR">X</a>
+            </div>
+        </section>
     </main>
     <footer>
 
     </footer>
+    <script src="./formsModal.js" ></script>
 </body>
 
 </html>
