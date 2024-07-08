@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 * {
     font-family: sans-serif;
     margin: 0;
@@ -382,6 +383,7 @@ body {
     right: 0;
     top: 0;
     transition: opacity .6s .9s; /*modificamos el tiempo de demora de la transición en sí (.6s) y cuanto tarda en empezar a ejecutarse(.9s)*/
+    overflow-y: scroll;
 }
 
 .modalShow{
