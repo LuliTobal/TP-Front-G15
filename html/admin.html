@@ -7,142 +7,30 @@
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/modalProductos.css">
     <title>Document</title>
 </head>
 <body>
     <div id="app">
         <header id="header"></header>
-        <div class="cuerpo_pagina">
-            <div class="socalo_top">
-                <h1>Panel administrador</h1>
+        <main>
+            <div class="cuerpo_pagina">
+                <div class="socalo_top">
+                    <h1>Panel administrador</h1>
+                </div>
+                <div id="barra_izquierda" class="navegacion_izquierda">
+                    <ul class="items_navegacion">
+                        <li class="item_nav" id="usuarios"><img src="../img/account_circle_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt=""><p>Usuarios</p></li>
+                        <li class="item_nav" id="ventas"><img src="../img/paid_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt=""><p>Ventas</p></li>
+                        <li class="item_nav" id="productos"><img src="../img/sell_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt=""><p>Productos</p></li>
+                    </ul>
+                </div>
+                <div class="tabla_usuarios"></div> 
             </div>
-            <div id="barra_izquierda" class="navegacion_izquierda">
-                <ul class="items_navegacion">
-                    <li class="item_nav" id="usuarios"><img src="../img/account_circle_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt=""><p>Usuarios</p></li>
-                    <li class="item_nav" id="ventas"><img src="../img/paid_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt=""><p>Ventas</p></li>
-                    <li class="item_nav" id="productos"><img src="../img/sell_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt=""><p>Productos</p></li>
-                </ul>
-            </div>
-            <div class="tabla_usuarios">
-                <!-- Espacio para las tablas creadas dinámicamente -->
-            </div> 
-        </div>
+            <div class="modal_agregar"></div>
+        </main>
+        <footer id="footer"></footer>
     </div>
-    <!-- <div id="app">
-        <header id="header"></header>
-        <div class="cuerpo_pagina">
-            <div class="socalo_top">
-                <h1>Panel administrador</h1>
-            </div>
-            <div id="barra_izquierda" class="navegacion_izquierda">
-                <ul class="items_navegacion">
-                    <li class="item_nav" id="usuarios"><img src="../img/account_circle_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt=""><p>Usuarios</p></li>
-                    <li class="item_nav" id="ventas"><img src="../img/paid_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt=""><p>Ventas</p></li>
-                    <li class="item_nav" id="preductos"><img src="../img/sell_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt=""><p>Productos</p></li>
-                </ul>
-            </div>
-            <div class="tabla_usuarios">
-            </div> -->
-            <!-- <div class="tabla_usuarios">
-                <table class="lista_usuarios" id="tablaUsuario">
-                    <thead>
-                        <tr class="categorias_tabla">
-                            <th>Usuario</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Mail</th>
-                            <th>Teléfono</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody class="cuerpo_tabla">
-                        <tr class="tarjeta_tabla">
-                            <td>juanitoP96</td>
-                            <td>Juan</td>
-                            <td>Perez</td>
-                            <td>juaniperez_96@hotmail.com</td>
-                            <td>3512112236</td>
-                            <td><button class=" "><img src="../img/delete_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt=""></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="lista_usuarios id="tablaVentas"">
-                    <thead>
-                        <tr class="categorias_tabla">
-                            <th>Orden</th>
-                            <th>Fecha</th>
-                            <th>Productos</th>
-                            <th>Total</th>
-                            <th>Cliente</th>
-                            <th>Mail</th>
-                            <th>Teléfono</th>
-                        </tr>
-                    </thead>
-                    <tbody class="cuerpo_tabla">
-                        <tr class="tarjeta_tabla">
-                            <td>#12345</td>
-                            <td>01/02/2024</td>
-                            <td>Zapatilla Adidas</td>
-                            <td>$123.456</td>
-                            <td>Juan Perez</td>
-                            <td>juaniperez_96@hotmail.com</td>
-                            <td>3512112236</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="lista_usuarios" id="tablaProductos">
-                    <thead>
-                        <tr class="categorias_tabla">
-                            <th>Orden</th>
-                            <th>Fecha</th>
-                            <th>Productos</th>
-                            <th>Total</th>
-                            <th>Cliente</th>
-                            <th>Mail</th>
-                            <th>Teléfono</th>
-                        </tr>
-                    </thead>
-                    <tbody class="cuerpo_tabla">
-                        <tr class="tarjeta_tabla">
-                            <td>#12345</td>
-                            <td>01/02/2024</td>
-                            <td>Zapatilla Adidas</td>
-                            <td>$123.456</td>
-                            <td>Juan Perez</td>
-                            <td>juaniperez_96@hotmail.com</td>
-                            <td>3512112236</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="lista_usuarios">
-                    <thead>
-                        <tr class="categorias_tabla">
-                            <th></th>
-                            <th>Productos</th>
-                            <th>Stock</th>
-                            <th>Precio</th>
-                            <th>Categoría</th>
-                            <th>Género</th>
-                            <th>Talle</th>
-                            <th><button class="agregar_producto">Agregar nuevo</button></th>
-                        </tr>
-                    </thead>
-                    <tbody class="cuerpo_tabla">
-                        <tr class="tarjeta_tabla">
-                            <td><img src="../img/c77c2a06864ac9aca38dc5bd9371de015471edcdbf322dfb14411689bf968ae5.jpg" alt="" class="img_producto"></td>
-                            <td>Zapatilla Fulano</td>
-                            <td>1</td>
-                            <td>$123.456</td>
-                            <td>Zapatilla</td>
-                            <td>Unisex</td>
-                            <td>36</td>
-                            <td><img src="../img/edit_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt=""></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>  -->
-        <!-- </div>
-    </div> -->
     <script src="../js/panelAdmin.js"></script>
     <script src="../js/header.js"></script>
     <script src="../js/footer.js"></script>

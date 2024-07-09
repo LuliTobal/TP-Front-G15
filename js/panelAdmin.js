@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <td>Perez</td>
                     <td>juaniperez_96@hotmail.com</td>
                     <td>3512112236</td>
-                    <td><button class=" "><img src="../img/delete_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt=""></button></td>
+                    <td><button class="boton_eliminar"><img src="../img/delete_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt=""></button></td>
                 </tr>
             </tbody>
         `;
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <th>Categoría</th>
                     <th>Género</th>
                     <th>Talle</th>
-                    <th><button class="agregar_producto">Agregar nuevo</button></th>
+                    <th class="agregar_producto" id="nuevo_producto">Agregar nuevo</th>
                 </tr>
             </thead>
             <tbody class="cuerpo_tabla">
@@ -91,12 +91,138 @@ document.addEventListener('DOMContentLoaded', function() {
                     <td>Zapatilla</td>
                     <td>Unisex</td>
                     <td>36</td>
-                    <td><img src="../img/edit_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt=""></td>
+                    <td class="agregar_producto" id="editar_producto"><img src="../img/edit_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg" alt=""></td>
                 </tr>
             </tbody>
         `;
 
         return tabla;
+    }
+
+    function crearModalNuevo() {
+        var modal = document.createElement('div');
+        modal.classList.add('modal');
+        modal.id = 'modal_agregar';
+
+        modal.innerHTML = `
+            <section class="modal registro_form" id="modal_agregar">
+                <div class="modal_container">
+                    <form class="modal_form form_registro" id="form_registro">
+                        <div class="imagen">
+                            <label for="imageInput">Foto del producto</label>
+                            <input type="file" id="imageInput" accept="image/*" class="registro_inputs">
+                            <img id="preview" src="" alt="">
+                        </div>
+                        <div class="producto">
+                            <label for="producto">Producto</label>
+                            <input type="text" id="producto" placeholder="Producto" class="registro_inputs">
+                            <div id="errorMessages8" class="error2"></div>
+                        </div>
+                        <div class="categoria">
+                            <label for="categorias">Categoria de producto</label>
+                            <select id="categorias" name="opciones" class="registro_inputs">
+                                <option value="opcion1">Elementos de entrenamiento</option>
+                                <option value="opcion2">Suplementos</option>
+                                <option value="opcion3">Merchandising</option>
+                                <option value="opcion4">Indumentaria deportiva</option>
+                            </select>
+                            <div id="errorMessages11" class="error2"></div>
+                        </div>
+                        <div class="genero">
+                            <label for="generos">Género</label>
+                            <select id="generos" name="opciones" class="registro_inputs">
+                                <option value="opcion5">Hombre</option>
+                                <option value="opcion6">Mujer</option>
+                                <option value="opcion7">Unisex</option>
+                            </select>
+                            <div id="errorMessages12" class="error2"></div>
+                        </div>
+                        <div class="talle">
+                            <label for="talle">Talle</label>
+                            <input type="text" id="talle" name="talle" placeholder="Talle" class="registro_inputs">
+                            <div id="errorMessages13" class="error2"></div>
+                        </div>
+                        <div class="stock">
+                            <label for="stock">Stock</label>
+                            <input type="number" id="stock" name="quantity" value="0" class="registro_inputs">
+                            <div id="errorMessages9" class="error2"></div>
+                        </div>
+                        <div class="precio">
+                            <label for="precio">Precio</label>
+                            <input type="number" name="precio" id="precio" class="registro_inputs">
+                            <div id="errorMessages10" class="error2"></div>
+                        </div>
+                        <input type="submit" value="Agregar producto" class="registro_btn">
+                    </form>
+                    <a href="#" class="cierreModalR" id="cerrar_modal">X</a>
+                </div>
+            </section>
+        `;
+
+        return modal;
+    }
+
+    function crearModalEdit() {
+        var modalEdit = document.createElement('div');
+        modalEdit.classList.add('modal');
+        modalEdit.id = 'modal_editar';
+    
+        modalEdit.innerHTML = `
+            <section class="modal registro_form" id="modal_editar">
+                <div class="modal_container">
+                    <form class="modal_form form_registro" id="form_registro">
+                        <div class="imagen">
+                            <label for="imageInput">Foto del producto</label>
+                            <input type="file" id="imageInput" accept="image/*" class="registro_inputs">
+                            <img id="preview" src="" alt="">
+                        </div>
+                        <div class="producto">
+                            <label for="producto">Producto</label>
+                            <input type="text" id="producto" placeholder="Producto" class="registro_inputs">
+                            <div id="errorMessages8" class="error2"></div>
+                        </div>
+                        <div class="categoria">
+                            <label for="categorias">Categoria de producto</label>
+                            <select id="categorias" name="opciones" class="registro_inputs">
+                                <option value="opcion1">Elementos de entrenamiento</option>
+                                <option value="opcion2">Suplementos</option>
+                                <option value="opcion3">Merchandising</option>
+                                <option value="opcion4">Indumentaria deportiva</option>
+                            </select>
+                            <div id="errorMessages11" class="error2"></div>
+                        </div>
+                        <div class="genero">
+                            <label for="generos">Género</label>
+                            <select id="generos" name="opciones" class="registro_inputs">
+                                <option value="opcion5">Hombre</option>
+                                <option value="opcion6">Mujer</option>
+                                <option value="opcion7">Unisex</option>
+                            </select>
+                            <div id="errorMessages12" class="error2"></div>
+                        </div>
+                        <div class="talle">
+                            <label for="talle">Talle</label>
+                            <input type="text" id="talle" name="talle" placeholder="Talle" class="registro_inputs">
+                            <div id="errorMessages13" class="error2"></div>
+                        </div>
+                        <div class="stock">
+                            <label for="stock">Stock</label>
+                            <input type="number" id="stock" name="quantity" value="0" class="registro_inputs">
+                            <div id="errorMessages9" class="error2"></div>
+                        </div>
+                        <div class="precio">
+                            <label for="precio">Precio</label>
+                            <input type="number" name="precio" id="precio" class="registro_inputs">
+                            <div id="errorMessages10" class="error2"></div>
+                        </div>
+                        <input type="submit" value="Guardar cambios" class="registro_btn">
+                    </form>
+                    <a href="#" class="cierreModalR" id="cerrar_modal">X</a>
+                </div>
+            </section>
+        `;
+
+        return modalEdit;
     }
 
     // Función para ocultar todas las tablas
@@ -127,6 +253,52 @@ document.addEventListener('DOMContentLoaded', function() {
         var tablaProductos = crearTablaProductos();
         document.querySelector('.tabla_usuarios').appendChild(tablaProductos);
         cambiarEstiloItemSeleccionado('productos'); // Cambiar estilo del ítem
+        agregarEventoNuevoProducto();//////////////////////////////////////////////////////////////agregado para Modal///////////////////////////////
+        agregarEventoEditProducto()
+    }
+
+    function mostrarModalNuevo() {
+        var modalCargar = crearModalNuevo();
+        document.querySelector('.modal_agregar').appendChild(modalCargar);
+        ///////////////////////////////////////////////////////////////////AGREGADO//////////////////////////////////////////////////////////////
+        var cerrarBtn = document.getElementById('cerrar_modal');
+        cerrarBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // Para prevenir actividades por defecto
+            modalCargar.style.display = 'none'; // Ocultar modal
+        });
+
+        modalCargar.style.display = 'flex';
+    }
+
+    function mostrarModalEdit() {
+        var modalEdit = crearModalEdit();
+        document.querySelector('.modal_agregar').appendChild(modalEdit);
+        ///////////////////////////////////////////////////////////////////AGREGADO//////////////////////////////////////////////////////////////
+        var cerrarBtn = document.getElementById('cerrar_modal');
+        cerrarBtn.addEventListener('click', function(e) {
+            e.preventDefault(); // Para prevenir actividades por defecto
+            modalEdit.style.display = 'none'; // Ocultar modal
+        });
+
+        modalEdit.style.display = 'flex';
+    }
+         ///////////////////////////////////////////////////////////////////AGREGADO//////////////////////////////////////////////////////////////
+    function agregarEventoNuevoProducto() {
+        var nuevoProductoBtn = document.getElementById('nuevo_producto');
+        if (nuevoProductoBtn) {
+            nuevoProductoBtn.addEventListener('click', function() {
+                mostrarModalNuevo();
+            });
+        }
+    }
+
+    function agregarEventoEditProducto() {
+        var editProductoBtn = document.getElementById('editar_producto');
+        if (editProductoBtn) {
+            editProductoBtn.addEventListener('click', function() {
+                mostrarModalEdit();
+            });
+        }
     }
 
     //funcionparaelcambiodeestilo
@@ -157,6 +329,28 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('productos').addEventListener('click', function() {
         mostrarTablaProductos();
     });
+
+    document.getElementById('nuevo_producto').addEventListener('click', function() {
+         mostrarModalNuevo();
+        // modal.classList.add('modalShow');
+    });
+
+
+    document.getElementById('cerrar_modal').addEventListener('click', function() {
+         e.preventDefault(); //para prevenir actividades por defecto
+         modal.classList.remove('modal'); //modal entre a sus clases y saque la clase donde se muestra (modalShow)
+    })
+    
+    document.getElementById('editar_producto').addEventListener('click', function() {
+        mostrarModalEdit();
+       // modal.classList.add('modalShow');
+    });
+
+
+    document.getElementById('cerrar_modal').addEventListener('click', function() {
+        e.preventDefault(); //para prevenir actividades por defecto
+        modal.classList.remove('modal'); //modal entre a sus clases y saque la clase donde se muestra (modalShow)
+    })
 
     // Mostrar la tabla de usuarios por defecto al cargar la página
     mostrarTablaUsuarios();
