@@ -50,6 +50,9 @@ function generateHeader(opcion) {
   if(opcion === 2){
     const header = document.getElementById('header');
     
+    let usuarioJSON = localStorage.getItem('usuario');
+    let usuario = JSON.parse(usuarioJSON);
+
     const logoImg = document.createElement('img');
     logoImg.src = '../img/logoYyGC.svg';
     logoImg.alt = 'Logo de Gym'; 
@@ -105,27 +108,25 @@ function generateHeader(opcion) {
     profileItem.classList.add('menu-item', 'profile-item');
 
     const profileImg = document.createElement('img');
-    profileImg.src = '../img/account_circle.png'; // Ruta a la foto de perfil
     profileImg.alt = 'Foto de Perfil';
     profileImg.classList.add('profile-img');
+
+    profileImg.src = usuario && usuario.image ? usuario.image : '../img/account_circle.png';
 
     profileItem.appendChild(profileImg);
 
     const dropdown = document.createElement('div');
     dropdown.classList.add('dropdown-content');
 
-    let usuarioJSON = localStorage.getItem('usuario');
-    let usuario = JSON.parse(usuarioJSON);
     let options;
     if (usuario && usuario.role === 'ADMIN') {
       options = [
-        { text: 'Mi Perfil', href: '#perfil' },
-        { text: 'Panel', href: '#configuraciones' }
+        { text: 'Mi Perfil', href: '../html/userEdit.html' },
+        { text: 'Panel de Administración', href: '../html/admin.html' }
       ];  
     } else {
       options = [
-        { text: 'Mi Perfil', href: '#perfil' },
-        { text: 'Mis Compras', href: '#configuraciones' }
+        { text: 'Mi Perfil', href: '../html/userEdit.html' }
       ]; 
     }
 
@@ -170,6 +171,9 @@ function generateHeader(opcion) {
   if(opcion === 3){
     const header = document.getElementById('header');
     
+    let usuarioJSON = localStorage.getItem('usuario');
+    let usuario = JSON.parse(usuarioJSON);
+
     const logoImg = document.createElement('img');
     logoImg.src = '../img/logoYyGC.svg';
     logoImg.alt = 'Logo de Gym'; 
@@ -225,27 +229,25 @@ function generateHeader(opcion) {
     profileItem.classList.add('menu-item', 'profile-item');
 
     const profileImg = document.createElement('img');
-    profileImg.src = '../img/account_circle.png'; // Ruta a la foto de perfil
     profileImg.alt = 'Foto de Perfil';
     profileImg.classList.add('profile-img');
+
+    profileImg.src = usuario && usuario.image ? usuario.image : '../img/account_circle.png';
 
     profileItem.appendChild(profileImg);
 
     const dropdown = document.createElement('div');
     dropdown.classList.add('dropdown-content');
 
-    let usuarioJSON = localStorage.getItem('usuario');
-    let usuario = JSON.parse(usuarioJSON);
     let options;
     if (usuario && usuario.role === 'ADMIN') {
       options = [
-        { text: 'Mi Perfil', href: '#perfil' },
-        { text: 'Panel', href: '#configuraciones' }
+        { text: 'Mi Perfil', href: '../html/userEdit.html' },
+        { text: 'Panel de Administración', href: '../html/admin.html' }
       ];  
     } else {
       options = [
-        { text: 'Mi Perfil', href: '#perfil' },
-        { text: 'Mis Compras', href: '#configuraciones' }
+        { text: 'Mi Perfil', href: '../html/userEdit.html' }
       ]; 
     }
     
@@ -286,6 +288,22 @@ function generateHeader(opcion) {
       localStorage.setItem('logueado', false); 
       window.location.href = '../index.html'; 
     });
+  }
+}
+
+function updateHeaderImage(user) {
+  // Aquí seleccionas el elemento img del header
+  const profileImg = document.querySelector('.profile-img'); // Puedes usar una clase para seleccionar el elemento
+
+  if (profileImg) {
+    // Verifica que el usuario tenga una imagen definida
+    if (user && user.image) {
+      profileImg.src = user.image; // Actualiza el src de la imagen con la nueva URL
+    } else {
+      profileImg.src = '../img/account_circle.png'; // O utiliza una imagen por defecto si no hay imagen definida
+    }
+  } else {
+    console.error('No se pudo encontrar el elemento .profile-img en el header.');
   }
 }
 

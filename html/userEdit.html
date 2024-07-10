@@ -18,31 +18,34 @@
                     <h1>Editar información</h1>
                 </div>
                 <div class="contenedor_form_edit">
-                    <form action="" class="form_edit">
+                    <form @submit.prevent="saveChanges" class="form_edit">
                         <div class="imagen_subir">
-                            <img src="../img/WhatsApp Image 2024-07-10 at 02.02.04.jpeg" alt="" class="fotoSubir" alt="Imagen de perfil">
-                            <input id="file-upload" type="file" class="imagen-subir-input" accept="image/*"/>
+                            <img :src="user.image || '../img/editPhoto.jpeg'" alt="Imagen de perfil" class="fotoSubir">
+                            <input id="file-upload" type="file" class="imagen-subir-input" accept="image/*" @change="onFileChange"/>
                         </div>
                         <div class="editar_info">
-                            <input class="editP doble_input" type="text" placeholder="Nombre" required/>
-                            <input class="editP doble_input" type="text" placeholder="Apellido" required/>
-                            <input class="editP doble_input" type="tel" placeholder="Teléfono" id="">
-                            <input class="editP doble_input" type="text" placeholder="Dirección" id="">
-                            <input class="editP simple_input" type="email" placeholder="Email" id="email" required />
-                            <input class="editP simple_input" type="text" placeholder="Usuario" required />
-                            <input type="password" class="editP doble_input" placeholder="Nueva contraseña" id="">
-                            <input type="password" class="editP doble_input" placeholder="Repita la contraseña" id="">
-                            <input type="button" class="boton_edicion" value="Guardar cambios">
+                            <input class="editP doble_input" type="text" v-model="user.first_name" placeholder="Nombre" :disabled="!isEditable" required/>
+                            <input class="editP doble_input" type="text" v-model="user.last_name" placeholder="Apellido" :disabled="!isEditable" required/>
+                            <input class="editP doble_input" type="tel" v-model="user.phone" placeholder="Teléfono" :disabled="!isEditable"/>
+                            <input class="editP doble_input" type="text" v-model="user.address" placeholder="Dirección" :disabled="!isEditable"/>
+                            <input class="editP simple_input" type="email" v-model="user.email" placeholder="Email" :disabled="!isEditable" required />
+                            <input class="editP simple_input" type="text" v-model="user.username" placeholder="Usuario" :disabled="!isEditable" required />
+                            <input type="password" class="editP doble_input" v-model="user.password" placeholder="Nueva contraseña" :disabled="!isEditable"/>
+                            <input type="password" class="editP doble_input" v-model="user.confirm_password" placeholder="Repita la contraseña" :disabled="!isEditable"/>
+                            <input type="button" class="boton_edicion" value="Habilitar Edición" @click="toggleEdit"/>
+                            <input type="submit" class="boton_edicion" value="Guardar cambios" :disabled="!isEditable">
                         </div>
-                        
                     </form>
                 </div>
             </div>
         </main>
         <footer id="footer"></footer>
     </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/header.js"></script>
     <script src="../js/footer.js"></script>
+    <script src="../js/userEdit.js"></script>
     <script>
         generateHeader(3);
         generateFooter();
