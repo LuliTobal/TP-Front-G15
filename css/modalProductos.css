@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+* {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    scrollbar-width: none; 
+}
+.modal{
+    --transform: translateY(0vh); /*se traslada sobre el eje Y desde una posición hasta la 0 que es cuando aparece con el modalShow*/
+    --transition: transform .8s;
+    background-color: #111111bd;
+    bottom: 0;
+    display: flex;
+    left: 0;
+    opacity: 1;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transition: opacity .6s .9s; /*modificamos el tiempo de demora de la transición en sí (.6s) y cuanto tarda en empezar a ejecutarse(.9s)*/
+    overflow-y: scroll;
+}
+
+/* .modalShow{
+    --transform: translateY(0);
+    --transition: transform .8s;
+    opacity: 1;
+    pointer-events:unset;
+    transition: opacity .6s /*transición que afecta la opacidad y tiene duración de 1.6s
+} */
+
+.modal_container{
+    display: flex;
+    flex-direction: column;
+    background-color: #F5F5F5;
+    border-radius: 20px;
+    margin: auto;
+    max-width: 600px;
+    padding: 3em;
+    place-items: center;
+    transform: var(--transform);
+    transition: var(--transition);
+    width: 90%;
+}
+
+.modal_form {
+    grid-gap: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.cierreModal, .cierreModalR{
+    color: #505050;
+    font-weight: 700;
+    padding: 1em 3em;
+    text-decoration: none;
+}
+
+.form_registro{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    justify-content: center;
+}
+
+.imagen, .producto, .categoria, .genero {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    width: 80%;
+}
+
+.talle, .stock{
+    width: 20%;
+}
+
+.precio{
+    width: 30%;
+}
+
+.registro_inputs{
+    border: 1px solid #505050;
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: 35px;
+    padding: 5px;
+    width: 100%;
+}
+
+.registro_btn{
+    background-color: #FAFF00;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    height: 40px;
+    margin-top: 20px;
+    min-width: 90px;
+    width: 60%;
+    align-self: center;
+}
+
+.registro_btn:hover {
+    background-color: #F5F5F5;
+    border: 1px solid #000;
+}
+
+.registro_inputs:focus{
+    border: 2px solid #FAFF00;
+}
