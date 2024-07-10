@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.id = 'modal_agregar';
 
         modal.innerHTML = `
-            <section class="modal registro_form" id="modal_agregar">
+            <section class="modal" id="modal_agregar">
                 <div class="modal_container">
                     <form class="modal_form form_registro" id="form_registro">
                         <div class="imagen">
@@ -116,7 +116,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="producto">
                             <label for="producto">Producto</label>
                             <input type="text" id="producto" placeholder="Producto" class="registro_inputs">
-                            <div id="errorMessages8" class="error2"></div>
                         </div>
                         <div class="categoria">
                             <label for="categorias">Categoria de producto</label>
@@ -126,7 +125,6 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <option value="opcion3">Merchandising</option>
                                 <option value="opcion4">Indumentaria deportiva</option>
                             </select>
-                            <div id="errorMessages11" class="error2"></div>
                         </div>
                         <div class="genero">
                             <label for="generos">Género</label>
@@ -135,22 +133,18 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <option value="opcion6">Mujer</option>
                                 <option value="opcion7">Unisex</option>
                             </select>
-                            <div id="errorMessages12" class="error2"></div>
                         </div>
                         <div class="talle">
                             <label for="talle">Talle</label>
                             <input type="text" id="talle" name="talle" placeholder="Talle" class="registro_inputs">
-                            <div id="errorMessages13" class="error2"></div>
                         </div>
                         <div class="stock">
                             <label for="stock">Stock</label>
                             <input type="number" id="stock" name="quantity" value="0" class="registro_inputs">
-                            <div id="errorMessages9" class="error2"></div>
                         </div>
                         <div class="precio">
                             <label for="precio">Precio</label>
                             <input type="number" name="precio" id="precio" class="registro_inputs">
-                            <div id="errorMessages10" class="error2"></div>
                         </div>
                         <input type="submit" value="Agregar producto" class="registro_btn">
                     </form>
@@ -168,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modalEdit.id = 'modal_editar';
     
         modalEdit.innerHTML = `
-            <section class="modal registro_form" id="modal_editar">
+            <section class="modal" id="modal_editar">
                 <div class="modal_container">
                     <form class="modal_form form_registro" id="form_registro">
                         <div class="imagen">
@@ -179,7 +173,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="producto">
                             <label for="producto">Producto</label>
                             <input type="text" id="producto" placeholder="Producto" class="registro_inputs">
-                            <div id="errorMessages8" class="error2"></div>
                         </div>
                         <div class="categoria">
                             <label for="categorias">Categoria de producto</label>
@@ -189,7 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <option value="opcion3">Merchandising</option>
                                 <option value="opcion4">Indumentaria deportiva</option>
                             </select>
-                            <div id="errorMessages11" class="error2"></div>
                         </div>
                         <div class="genero">
                             <label for="generos">Género</label>
@@ -198,22 +190,18 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <option value="opcion6">Mujer</option>
                                 <option value="opcion7">Unisex</option>
                             </select>
-                            <div id="errorMessages12" class="error2"></div>
                         </div>
                         <div class="talle">
                             <label for="talle">Talle</label>
                             <input type="text" id="talle" name="talle" placeholder="Talle" class="registro_inputs">
-                            <div id="errorMessages13" class="error2"></div>
                         </div>
                         <div class="stock">
                             <label for="stock">Stock</label>
                             <input type="number" id="stock" name="quantity" value="0" class="registro_inputs">
-                            <div id="errorMessages9" class="error2"></div>
                         </div>
                         <div class="precio">
                             <label for="precio">Precio</label>
                             <input type="number" name="precio" id="precio" class="registro_inputs">
-                            <div id="errorMessages10" class="error2"></div>
                         </div>
                         <input type="submit" value="Guardar cambios" class="registro_btn">
                     </form>

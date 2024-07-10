@@ -48,32 +48,6 @@
     margin: auto;
 }
 
-.modal_inputs{
-    border: 1px solid #505050;
-    border-radius: 10px;
-    height: 25px;
-    padding: 5px;
-    width: 100%;
-}
-
-.modal_btn{
-    background-color: #FAFF00;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: 700;
-    height: 40px;
-    margin-top: 20px;
-    min-width: 90px;
-    width: 60%;
-}
-
-.modal_btn:hover {
-    background-color: #F5F5F5;
-    border: 1px solid #000;
-}
-
 .cierreModal, .cierreModalR{
     color: #505050;
     font-weight: 700;
@@ -131,27 +105,6 @@
     border: 1px solid #000;
 }
 
-.modal_inputs:focus, .registro_inputs:focus{
+.registro_inputs:focus{
     border: 2px solid #FAFF00;
 }
-
-.abrirRegistro {
-    cursor: pointer;
-}
-
-.abrirRegistro:hover {
-    color: blue;
-    text-decoration: underline;
-}
-
-/* #form_registro>div {
-    min-height: 63px;
-    width: 100%;
-} 
-
-.error2{
-    color: red;
-    padding: 5px 7px;
-    text-align: start;
-    width: 100%;
-}*/
