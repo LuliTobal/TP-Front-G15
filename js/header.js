@@ -75,11 +75,10 @@ function generateHeader(opcion) {
       ul.appendChild(li);
     });
 
-    const logoutItem = document.createElement('li');
-    logoutItem.classList.add('menu-item', 'logout-icon');
-
     const logoutLink = document.createElement('a');
-    logoutLink.href = "#"; 
+    logoutLink.innerText = 'Cerrar Sesión';
+    logoutLink.href = "#";
+    logoutLink.classList.add('logout-link');
 
     const logoutIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); // Crear elemento SVG
     logoutIcon.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
@@ -93,8 +92,64 @@ function generateHeader(opcion) {
     logoutIcon.appendChild(path);
 
     logoutLink.appendChild(logoutIcon);
-    logoutItem.appendChild(logoutLink);
-    ul.appendChild(logoutItem);
+
+    logoutLink.addEventListener('mouseover', () => {
+      path.style.fill = '#FAFF00'; 
+    });
+
+    logoutLink.addEventListener('mouseout', () => {
+      path.style.fill = 'white'; 
+    });
+  
+    const profileItem = document.createElement('li');
+    profileItem.classList.add('menu-item', 'profile-item');
+
+    const profileImg = document.createElement('img');
+    profileImg.src = '../img/account_circle.png'; // Ruta a la foto de perfil
+    profileImg.alt = 'Foto de Perfil';
+    profileImg.classList.add('profile-img');
+
+    profileItem.appendChild(profileImg);
+
+    const dropdown = document.createElement('div');
+    dropdown.classList.add('dropdown-content');
+
+    let usuarioJSON = localStorage.getItem('usuario');
+    let usuario = JSON.parse(usuarioJSON);
+    let options;
+    if (usuario && usuario.role === 'ADMIN') {
+      options = [
+        { text: 'Mi Perfil', href: '#perfil' },
+        { text: 'Panel', href: '#configuraciones' }
+      ];  
+    } else {
+      options = [
+        { text: 'Mi Perfil', href: '#perfil' },
+        { text: 'Mis Compras', href: '#configuraciones' }
+      ]; 
+    }
+
+    options.forEach(option => {
+      const a = document.createElement('a');
+      a.href = option.href;
+      a.innerText = option.text;
+      dropdown.appendChild(a);
+    });
+
+    dropdown.appendChild(logoutLink);
+
+    profileItem.appendChild(dropdown);
+    ul.appendChild(profileItem);
+
+    profileImg.addEventListener('click', () => {
+      dropdown.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!profileItem.contains(event.target)) {
+        dropdown.classList.remove('show');
+      }
+    });
 
     nav.appendChild(ul);
 
@@ -107,6 +162,7 @@ function generateHeader(opcion) {
     });
 
     logoutLink.addEventListener('click', () => {
+      localStorage.removeItem('usuario');
       localStorage.setItem('logueado', false); 
       window.location.href = '../index.html'; 
     });
@@ -139,11 +195,10 @@ function generateHeader(opcion) {
       ul.appendChild(li);
     });
 
-    const logoutItem = document.createElement('li');
-    logoutItem.classList.add('menu-item', 'logout-icon');
-
     const logoutLink = document.createElement('a');
+    logoutLink.innerText = 'Cerrar Sesión';
     logoutLink.href = "#"; 
+    logoutLink.classList.add('logout-link');
 
     const logoutIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg'); // Crear elemento SVG
     logoutIcon.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
@@ -157,8 +212,65 @@ function generateHeader(opcion) {
     logoutIcon.appendChild(path);
 
     logoutLink.appendChild(logoutIcon);
-    logoutItem.appendChild(logoutLink);
-    ul.appendChild(logoutItem);
+
+    logoutLink.addEventListener('mouseover', () => {
+      path.style.fill = '#FAFF00'; 
+    });
+
+    logoutLink.addEventListener('mouseout', () => {
+      path.style.fill = 'white'; 
+    });
+  
+    const profileItem = document.createElement('li');
+    profileItem.classList.add('menu-item', 'profile-item');
+
+    const profileImg = document.createElement('img');
+    profileImg.src = '../img/account_circle.png'; // Ruta a la foto de perfil
+    profileImg.alt = 'Foto de Perfil';
+    profileImg.classList.add('profile-img');
+
+    profileItem.appendChild(profileImg);
+
+    const dropdown = document.createElement('div');
+    dropdown.classList.add('dropdown-content');
+
+    let usuarioJSON = localStorage.getItem('usuario');
+    let usuario = JSON.parse(usuarioJSON);
+    let options;
+    if (usuario && usuario.role === 'ADMIN') {
+      options = [
+        { text: 'Mi Perfil', href: '#perfil' },
+        { text: 'Panel', href: '#configuraciones' }
+      ];  
+    } else {
+      options = [
+        { text: 'Mi Perfil', href: '#perfil' },
+        { text: 'Mis Compras', href: '#configuraciones' }
+      ]; 
+    }
+    
+    options.forEach(option => {
+      const a = document.createElement('a');
+      a.href = option.href;
+      a.innerText = option.text;
+      dropdown.appendChild(a);
+    });
+
+    dropdown.appendChild(logoutLink);
+
+    profileItem.appendChild(dropdown);
+    ul.appendChild(profileItem);
+
+    profileImg.addEventListener('click', () => {
+      dropdown.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (event) => {
+      if (!profileItem.contains(event.target)) {
+        dropdown.classList.remove('show');
+      }
+    });
+
     nav.appendChild(ul);
 
     header.appendChild(logoImg);
@@ -170,24 +282,10 @@ function generateHeader(opcion) {
     });
 
     logoutLink.addEventListener('click', () => {
+      localStorage.removeItem('usuario');
       localStorage.setItem('logueado', false); 
       window.location.href = '../index.html'; 
     });
   }
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-  const logoutItem = document.querySelector('.logout-icon');
-  if (logoutItem) {
-    logoutItem.addEventListener('mouseover', () => {
-      const logoutIcon = logoutItem.querySelector('svg path');
-      logoutIcon.style.fill = '#FAFF00'; 
-    });
-
-    logoutItem.addEventListener('mouseout', () => {
-      const logoutIcon = logoutItem.querySelector('svg path');
-      logoutIcon.style.fill = 'white'; 
-    });
-  }
-});
 

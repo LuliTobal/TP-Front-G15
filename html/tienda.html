@@ -145,9 +145,9 @@
         <div class="product" v-for="(product, index) in productosPaginados" :key="index">
           <img :src="product.image" :alt="product.name">
           <h3>{{ product.name }}</h3>
-          <span @mouseover="mostrarDescripcion(index)" @mouseout="ocultarDescripcion(index)">
+          <!-- <span @mouseover="mostrarDescripcion(index)" @mouseout="ocultarDescripcion(index)">
             Ver descripción
-          </span>
+          </span> -->
           <div id="precio-carrito">
             <p id="precio">${{ product.price }}</p>
             <button @click="addToCart(product)">+</button>

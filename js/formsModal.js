@@ -268,49 +268,67 @@ document.getElementById('form_registro').addEventListener('submit', function(eve
     }
     
      if(!errores) {
-        var nuevoUsuario = {
-            nombre: nombre,
-            apellido: apellido,
-            telefono: tel,
-            direccion: direccion,
-            email: mail,
-            usuario: usuario,
-            contrasenia: contrasenia1 
-        };
+        var formData = new FormData(); // Crear instancia de FormData
 
-        var usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        // Agregar campos al FormData
+        formData.append('first_name', document.getElementById('nombre2').value);
+        formData.append('last_name', document.getElementById('apellido').value);
+        formData.append('phone', document.getElementById('tel2').value);
+        formData.append('address', document.getElementById('direccion').value);
+        formData.append('email', document.getElementById('mail2').value);
+        formData.append('username', document.getElementById('usuario').value);
+        formData.append('password', document.getElementById('contrasenia1').value);
+        formData.append('confirm_password', document.getElementById('contrasenia2').value);
 
-        usuarios.push(nuevoUsuario);
-
-        localStorage.setItem('usuarios', JSON.stringify(usuarios));
-
+        fetch('https://grupo15cac.pythonanywhere.com/api/users', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al registrar usuario');
+            }
+            return response.json();
+        })
+        .then(data => {
+            Swal.fire({
+                title: 'Enviando formulario...',
+                timer: 2000,
+                background: '#222222',
+                customClass: {
+                  title: 'swal2-personalizar-texto',
+                },
+                didOpen: () => {
+                  Swal.showLoading();
+                }
+              }).then(() => {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Registro exitoso!',
+                //   text: '¡Gracias por tu compra!',
+                  confirmButtonText: 'Aceptar',
+                  background: '#222222',
+                  customClass: {
+                    title: 'swal2-personalizar-texto',
+                    confirmButton: 'swal2-personalizar-boton'
+                  }
+                });
+              });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error al registrar usuario',
+                text: 'Por favor intenta nuevamente más tarde.',
+                confirmButtonText: 'Aceptar'
+            });
+        });
+    
         limpiarFormRegistro();
 
         cerrarModalRegistro();
-
-        Swal.fire({
-            title: 'Enviando formulario...',
-            timer: 2000,
-            background: '#222222',
-            customClass: {
-              title: 'swal2-personalizar-texto',
-            },
-            didOpen: () => {
-              Swal.showLoading();
-            }
-          }).then(() => {
-            Swal.fire({
-              icon: 'success',
-              title: 'Registro exitoso!',
-            //   text: '¡Gracias por tu compra!',
-              confirmButtonText: 'Aceptar',
-              background: '#222222',
-              customClass: {
-                title: 'swal2-personalizar-texto',
-                confirmButton: 'swal2-personalizar-boton'
-              }
-            });
-          });
+        
     }
 });
 
@@ -335,43 +353,65 @@ document.getElementById('login-form').addEventListener('submit', function(event)
        document.getElementById('errorMessages17').innerHTML = '';
     }
 
-    var usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-    
-    var usuarioValido = usuarios.find(function(user) {
-        return user.usuario === usuario && user.contrasenia === contrasenia;
-    });
-
-    if(!errores){
-        if (usuarioValido) {
-            localStorage.setItem('logueado', true);
-            limpiarFormLogin();
-            cerrarModalLogin();
-            window.location.href = '../index.html'; 
-        } else {
-            Swal.fire({
-                timer: 500,
-                background: '#222222',
-                customClass: {
-                  title: 'swal2-personalizar-texto',
-                },
-                didOpen: () => {
-                  Swal.showLoading();
-                }
-              }).then(() => {
-                Swal.fire({
-                  icon: 'error',
-                  title: 'Usuario y/o Contraseña incorrectos!',
-                  text: '¡Por favor intente nuevamente!',
-                  confirmButtonText: 'Aceptar',
-                  background: '#222222',
-                  customClass: {
-                    title: 'swal2-personalizar-texto',
-                    confirmButton: 'swal2-personalizar-boton'
-                  }
+    if (!errores) {
+        fetch('https://grupo15cac.pythonanywhere.com/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username_or_email: usuario,
+                password: contrasenia
+            })
+        })
+        .then(response => {
+            if (!response.ok) {
+                // Si la respuesta no es ok, lanzamos un error
+                return response.json().then(data => {
+                    throw new Error(data.Mensaje || 'Error al autenticar');
                 });
-              });
-        }
-    }  
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.user) {
+                localStorage.setItem('logueado', true);
+                localStorage.setItem('usuario', JSON.stringify(data.user));
+                limpiarFormLogin();
+                cerrarModalLogin();
+                window.location.href = '../index.html'; 
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error.message);
+            if (error.message === 'Credenciales inválidas' || error.message === 'Falta el nombre de usuario o la contraseña') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Usuario y/o Contraseña incorrectos!',
+                    text: '¡Por favor intente nuevamente!',
+                    confirmButtonText: 'Aceptar',
+                    background: '#222222',
+                    customClass: {
+                        title: 'swal2-personalizar-texto',
+                        confirmButton: 'swal2-personalizar-boton'
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error al conectar con el servidor',
+                    text: 'Por favor, intenta de nuevo más tarde.',
+                    confirmButtonText: 'Aceptar',
+                    background: '#222222',
+                    customClass: {
+                        title: 'swal2-personalizar-texto',
+                        confirmButton: 'swal2-personalizar-boton'
+                    }
+                });
+            }
+        });
+    }
+    
 });
 
 function limpiarFormLogin(){

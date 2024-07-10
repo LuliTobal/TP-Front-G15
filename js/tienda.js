@@ -3,7 +3,7 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
-      url: "https://cac-24176-tp-grupo15-default-rtdb.firebaseio.com/products.json",
+      url: "https://grupo15cac.pythonanywhere.com/api/products",
       products: [],
       carrito: [],
       filtrados: [],
@@ -117,6 +117,18 @@ createApp({
     },
     comprar() {
       this.carritoVisible = false;
+      let usuarioJSON = localStorage.getItem('usuario');
+      let usuario = JSON.parse(usuarioJSON);
+      const productosFiltrados = this.carrito.map(producto => {
+        return {
+          id_product: producto.id,
+          cantidad: producto.cantidad
+        };
+      });
+      const transaction = {
+        id_user: usuario.id,
+        products: productosFiltrados
+      }
       Swal.fire({
         title: 'Procesando compra...',
         timer: 3000,
@@ -128,20 +140,43 @@ createApp({
           Swal.showLoading();
         }
       }).then(() => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Compra realizada',
-          text: '¡Gracias por tu compra!',
-          confirmButtonText: 'Aceptar',
-          background: '#222222',
-          customClass: {
-            title: 'swal2-personalizar-texto',
-            confirmButton: 'swal2-personalizar-boton'
-          }
+        fetch('https://grupo15cac.pythonanywhere.com/api/transactions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(transaction)
+        })
+        .then(response => response.json())
+        .then(data => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Compra realizada',
+            text: '¡Gracias por tu compra!',
+            confirmButtonText: 'Aceptar',
+            background: '#222222',
+            customClass: {
+              title: 'swal2-personalizar-texto',
+              confirmButton: 'swal2-personalizar-boton'
+            }
+          });
+          this.limpiarCarrito();
+        })
+        .catch(error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Hubo un problema al procesar tu compra. Por favor intenta nuevamente.',
+            confirmButtonText: 'Aceptar',
+            background: '#222222',
+            customClass: {
+              title: 'swal2-personalizar-texto',
+              confirmButton: 'swal2-personalizar-boton'
+            }
+          });
+          console.error(error);
         });
-      });
-      this.limpiarCarrito();
-    },
+    })},
     handleFilterClick(tipo, valor) {     
       const filtroExistente = this.filtros.find(filtro => filtro.tipo === tipo && filtro.valor === valor);
 
@@ -206,13 +241,34 @@ createApp({
         this.filtrados = this.products.filter(producto => {
           return this.filtros.every(filtro => {
             if(filtro.tipo === 'categoria'){
-              return producto.category === filtro.valor;
+              switch (filtro.valor) {
+                case 'Elementos':
+                  return producto.id_category === 1;
+                case 'Suplemento':
+                  return producto.id_category === 2;
+                case 'Merchandising':
+                  return producto.id_category === 3;
+                case 'Indumentaria':
+                  return producto.id_category === 4;
+                default:
+                  break;
+              } 
             }
             if(filtro.tipo === 'genero'){
+              switch (filtro.valor) {
+                case 'Hombre':
+                  return producto.id_gender === 1;
+                case 'Mujer':
+                  return producto.id_gender === 2;
+                case 'Unisex':
+                  return producto.id_gender === 3;
+                default:
+                  break;
+              } 
               return producto.gender === filtro.valor;
             }
             if(filtro.tipo === 'talle'){
-              return producto.size.includes(filtro.valor);
+              return producto.sizes.some(size => size.name === filtro.valor);
             }
             if(filtro.tipo === 'menor'){
               return producto.price <= Number(filtro.valor);
