@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edición perfil</title>
+    <link rel="icon" type="image/svg+xml" href="../img/IconoP-Y_Mesa de trabajo 1.svg">
+    <link rel="stylesheet" href="../css/userEdit.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/footer.css">
+</head>
+<body>
+    <div id="app">
+        <header id="header"></header>
+        <main>
+            <div class="cuerpo_pagina">
+                <div class="socalo_top">
+                    <h1>Editar información</h1>
+                </div>
+                <div class="contenedor_form_edit">
+                    <form action="" class="form_edit">
+                        <div class="imagen_subir">
+                            <img src="../img/WhatsApp Image 2024-07-10 at 02.02.04.jpeg" alt="" class="fotoSubir" alt="Imagen de perfil">
+                            <input id="file-upload" type="file" class="imagen-subir-input" accept="image/*"/>
+                        </div>
+                        <div class="editar_info">
+                            <input class="editP doble_input" type="text" placeholder="Nombre" required/>
+                            <input class="editP doble_input" type="text" placeholder="Apellido" required/>
+                            <input class="editP doble_input" type="tel" placeholder="Teléfono" id="">
+                            <input class="editP doble_input" type="text" placeholder="Dirección" id="">
+                            <input class="editP simple_input" type="email" placeholder="Email" id="email" required />
+                            <input class="editP simple_input" type="text" placeholder="Usuario" required />
+                            <input type="password" class="editP doble_input" placeholder="Nueva contraseña" id="">
+                            <input type="password" class="editP doble_input" placeholder="Repita la contraseña" id="">
+                            <input type="button" class="boton_edicion" value="Guardar cambios">
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </main>
+        <footer id="footer"></footer>
+    </div>
+    <script src="../js/header.js"></script>
+    <script src="../js/footer.js"></script>
+    <script>
+        generateHeader(3);
+        generateFooter();
+    </script>
+</body>
+</html>
